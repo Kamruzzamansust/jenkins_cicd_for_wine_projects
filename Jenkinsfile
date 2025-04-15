@@ -21,17 +21,16 @@ pipeline {
                 }
             }
         }
-         stage('Setting up our Virtual Environment and Installing Dependencies') {
+
+        stage('Setup venv & Install Dependencies') {
             steps {
                 script {
-                    echo 'Setting up our Virtual Environment and Installing Dependencies......................'
+                    echo 'Creating virtual environment and installing dependencies...'
                     sh """
-                    python -m venv ${VENV_DIR}
-                    source ${VENV_DIR}/bin/activate
-                    pip install -r requirements.txt
-                    
+                        python3 -m venv ${VENV_DIR}
+                        ${VENV_DIR}/bin/pip install --upgrade pip
+                        ${VENV_DIR}/bin/pip install -r requirements.txt
                     """
-
                 }
             }
         }
